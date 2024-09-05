@@ -1,1 +1,151 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Expanded:wght@300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// generla style
+:root
+{
+    --font-family:"Encode Sans Expanded", sans-serif;
+}
+
+
+body
+{
+    font-family: var(--font-family);
+}
+
+.text-main
+{
+    color:rgb(13, 159, 71) ;
+}
+
+.row{
+    @apply flex flex-wrap
+}
+.rating-color
+{
+    color: hwb(60 0% 0%);
+}
+
+.product
+{
+    transition:  all  0.5s;
+}
+
+.product:hover
+{
+    border-radius: 5px;
+    border: solid 1px rgb(13, 159, 71) ;
+    box-shadow: 0 0 10px rgba(13, 159, 71,.5);
+}
+
+.product button
+{
+    transform: translateY(100%);
+    opacity: 0;
+
+    transition: all 0.5s;
+}
+
+
+.product:hover button
+{
+    transform: translateY(0%);
+    opacity: 1;
+}
+
+
+.bg-main
+{
+    background-color: rgb(13, 159, 71);
+}
+
+
+.alert-danger
+{
+    @apply bg-red-400 p-3 rounded text-white font-bold;
+}
+.bg-gray
+
+{
+    background-color: rgba(128, 128, 128,.1);
+}
+
+.line
+{
+
+    background-color: rgba(128, 128, 128,.1);
+    height: 1px;
+    width: 100%;
+}
+
+.btn-main
+{
+    @apply bg-main  p-2 text-white rounded my-2 ;
+}
+.parnter img
+{
+    width: 45px;
+}
+.store-links img
+{
+    width: 100px;
+}
+
+
+
+
+nav
+{
+    background-color: rgba(13, 159, 71,.3);
+}
+
+
+.nav-icon a{
+
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(13, 159, 71,.8);
+    border-radius: 40px;
+    
+}
+
+.curoser-pointer
+{
+    cursor: pointer;
+}
+
+
+/********spinner*********/
+
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 50px;
+    aspect-ratio: 1;
+    display: grid;
+  }
+  .loader:before,
+  .loader:after {
+    content: "";
+    grid-area: 1/1;
+    border-radius: 50%;
+    background: rgb(13, 159, 71);
+    -webkit-mask:repeating-linear-gradient(#000 0 5px,#0000 0 10px);
+    animation: l35 1.5s infinite;
+  }
+  .loader:after {
+    -webkit-mask:repeating-linear-gradient(#0000 0 5px,#000 0 10px);
+    --s:-1;
+  }
+  @keyframes l35 {
+    0%,
+    10% {transform: translate(0) rotate(0)}
+    35% {transform: translate(calc(var(--s,1)*50%)) rotate(0)}
+    66% {transform: translate(calc(var(--s,1)*50%)) rotate(calc(var(--s,1)*180deg))}
+    90%,
+    100% {transform: translate(0) rotate(calc(var(--s,1)*180deg))}
+  }

@@ -1,0 +1,41 @@
+<h4 class="text-xl font-semibold my-3">Code Confirm : </h4>
+<form  [formGroup]="codeForm" (ngSubmit)="submitCodeForm()">
+
+ 
+
+    <label for="code">Code : </label>
+    <input type="text" class="w-full rounded border-black" id="code " formControlName="resetCode">
+
+        @if(codeForm.get('resetCode')?.errors && codeForm.get('resetCode')?.touched)
+        {
+            <div class="alert-danger">
+
+                @if(codeForm.get('resetCode')?.errors?.['required'])
+                {
+                    <p>Code is required</p>
+
+                }
+
+                @else if (codeForm.get('resetCode')?.errors?.['pattern']) {
+                    <p>Code not valid</p>
+
+                }
+            </div>
+        }
+    <button class="btn-main block ms-auto" [disabled]="codeForm.invalid">
+
+      
+        @if(isLoading)
+        {
+            <span>
+                <i class="fa fa-spin fa-spinner"></i>
+              </span>
+        }
+        @else {
+            <span>Send Code</span>    
+
+        }
+   
+    
+    </button>
+</form>

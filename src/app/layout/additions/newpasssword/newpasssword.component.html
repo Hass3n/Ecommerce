@@ -1,0 +1,59 @@
+<h4 class="text-xl font-semibold my-3">Reset password : </h4>
+<form  [formGroup]="newPasswordform" (ngSubmit)="submitNewPassword()">
+
+ 
+
+    <label for="email">Email </label>
+    <input type="email" class="w-full  rounded border-black " id="email " formControlName="email" >
+        @if(newPasswordform.get('email')?.errors && newPasswordform.get('email')?.touched)
+        {
+            <div class="alert-danger">
+
+                @if(newPasswordform.get('email')?.errors?.['required'])
+                {
+                    <p>Email is required</p>
+
+                }
+
+                @else if (newPasswordform.get('email')?.errors?.['email']) {
+                    <p>Email not valid</p>
+
+                }
+            </div>
+        }
+
+        <label for="password">New password : </label>
+        <input type="text" class="w-full rounded border-black" id="password " formControlName="newPassword">
+
+            @if(newPasswordform.get('newPassword')?.errors && newPasswordform.get('newPassword')?.touched)
+            {
+                <div class="alert-danger">
+
+                    @if(newPasswordform.get('newPassword')?.errors?.['required'])
+                    {
+                        <p>password is required</p>
+
+                    }
+
+                    @else if (newPasswordform.get('newPassword')?.errors?.['pattern']) {
+                        <p>enter valid password must be contain character and digit from A-Z a -z  0-9 and length min 8 </p>        
+                    }
+                </div>
+            }
+    <button class="btn-main block ms-auto" [disabled]="newPasswordform.invalid">
+
+      
+        @if(isLoading)
+        {
+            <span>
+                <i class="fa fa-spin fa-spinner"></i>
+              </span>
+        }
+        @else {
+            <span>Update password</span>    
+
+        }
+   
+    
+    </button>
+</form>

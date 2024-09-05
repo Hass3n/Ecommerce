@@ -1,0 +1,15 @@
+
+
+.brand-card .overlay
+{
+    opacity: 0;
+    transition: all .5s;
+    background-color: rgba(0, 0, 0,.6);
+}
+
+.brand-card:hover .overlay
+{
+
+    opacity: 1;
+
+}

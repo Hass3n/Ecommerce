@@ -1,0 +1,62 @@
+@if(isloading)
+{
+
+    <div class="row h-screen justify-center items-center ">
+    
+        <span class="loader block"></span>
+    
+    </div>
+}
+
+ 
+
+@else {
+
+  @if(userOrderinfo)
+  {
+    <div class="container mx-auto mt-6">
+
+
+
+        <div class="row">
+            @for (itemone of userOrderinfo; track $index) {
+
+            
+               @for (itemtwo of itemone.cartItems; track $index) {
+
+
+                <div class="md:w-2/12 w-full p-3">
+                    <div class="product p-2 cursor-pointer" >
+
+                     
+                    <div >
+                        <img [src]="itemtwo.product.imageCover" class="w-full" alt="">
+                        <span class="text-main font-bold ">{{itemtwo?.product?.category?.name}}</span>
+                        <h3 class="my-3 text-lg  font-medium">{{itemtwo?.product?.title?.split( ' ')?.slice(0,2)?.join(' ')}}</h3>
+                        <div class="row justify-between">
+                            <span>{{itemtwo?.price}}EGP</span>
+                            <span>{{itemtwo?.product?.ratingsAverage}} <i class="fa fa-star rating-color"></i></span>
+
+                        </div>
+
+                        <div class="bg-green-300 text-center font-semibold text-white">
+                            {{itemone.paymentMethodType}}
+                        </div>
+                    </div>
+
+
+                    </div>
+
+
+        
+                </div>
+               }
+             }
+              
+            
+        </div>
+
+    </div>
+  }
+}
+

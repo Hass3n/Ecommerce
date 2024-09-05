@@ -1,0 +1,71 @@
+@if(isloading)
+{
+    <div class="h-screen  row justify-center items-center">
+
+        <span class="loader block"></span>
+    
+    </div>
+    
+    
+}
+
+
+@else {
+
+    
+@if(cartloggeduser.data.products.length>0)
+{
+
+    <div class="container mx-auto">
+
+        <h1 class="text-xl font-semibold my-3">Shope Cart</h1>
+        <p class="text-main mb-3 font-semibold">Total price : {{cartloggeduser.data.totalCartPrice|currency}}</p>
+    
+    @for (item of cartloggeduser.data.products ; track $index) {
+        <div class="row bg-gray-100  items-center rounded my-1">
+            <div class="md:w-1/12 p-3">
+                <img [src]="item.product.imageCover" class="w-full" alt="">
+            </div>
+            <div class="md:w-10/12 p-3">
+                <h2 class="text-lg  mt-2">{{item.product.title}}</h2>
+                <p class="text-main my-3 ">price :{{item.price}}</p>
+                <span class="cursor-pointer mb-2  " (click)="deleteItemfromcart(item.product._id)"> <i class="fa fa-trash text-main"></i> Remove  </span>
+            </div>
+            <div class="md:w-1/12">
+                <button (click)="updateCartquntaity(item.product._id,item.count=item.count+1)" class="text-black   border-2 border-green-500  rounded px-2 py-1">+</button>
+                <span class="mx-1 font-semibold">{{item.count}}</span>
+                <button (click)="updateCartquntaity(item.product._id,item.count=item.count-1)" class="text-black border-2 border-green-500  rounded px-2 py-1 ">-</button>
+    
+            </div>
+    
+        </div>
+    }
+
+
+    <button class="btn-main ms-auto block" [routerLink]="['/shipingAddress',cartloggeduser.cartId]">Make Order</button>
+    
+    </div>
+    
+}
+
+@else if(errMssg){
+    <div class="alert-danger w3/4 bg-red-500">
+        <p>{{errMssg}}</p>
+    </div>
+}
+
+@else {
+
+
+    <div class=" bg-green-200 text-center rounded mt-8 mb-8">
+
+        <p class="p-5 font-semibold">Empty Card</p>
+    </div>
+
+
+
+}
+
+
+}
+

@@ -1,0 +1,50 @@
+<!--handle null safty-->
+@if(isloading)
+{
+
+    <div class="h-screen row justify-center items-center">
+
+        <span class="loader"></span>
+    </div>
+
+}
+
+@else {
+    @if(productdetails)
+{
+    <div class="container mx-auto">
+        <div class="row my-5  items-center">
+            <div class="md:w-3/12 ">
+
+                <owl-carousel-o [options]="customOptions">
+
+                    @for (item of productdetails.images; track $index) {
+                        <ng-template carouselSlide>
+                            <img [src]="item" alt="slider1" class="w-full">  
+        
+                        </ng-template>  
+                    }
+                
+                    
+        
+                 
+                  </owl-carousel-o>
+    
+            </div>
+    
+            <div class="md:w-9/12 p-4">
+    
+                <h1 class="text-lg font-medium">{{productdetails.title}}</h1>
+                <p class="text-sm text-gray-400 my-3">{{productdetails.description}}</p>
+                    <span class="text-xs">{{productdetails.category.name}}</span>
+                    <div class="row justify-between my-3">
+                        <span>{{productdetails.price}}EGP</span>
+                        <span>{{productdetails.ratingsAverage}}<i class="fa fa-star rating-color"></i></span>
+                    </div>
+                    <button (click)="addProductTocart(productdetails._id)" class="btn-main w-full">Add To Cart</button>
+    
+            </div>
+        </div>
+    </div>
+}
+}

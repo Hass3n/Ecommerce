@@ -1,0 +1,118 @@
+@if (isloading) {
+
+
+  <div class="h-screen row justify-center items-center">
+    <p class="loader"></p>
+  </div>
+}
+
+
+@else {
+  <div class="container mx-auto my-7">
+    <h2 class="font-semibold text-2xl ">Shipping Address : </h2>
+
+    <form  [formGroup]="shipformGroup" (ngSubmit)="submitcheckoutOnline()">
+        <div class="my-3">
+            <label for="Details" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Details</label>
+            <input formControlName="details" type="text" id="Details" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+            @if(shipformGroup.get('details')?.errors && shipformGroup.get('details')?.touched)
+            {
+                <div class="alert-danger">
+                    <p>you must be write details</p>
+                  </div>
+        
+
+            }
+          </div>
+
+      
+ 
+          <div class="my-3">
+            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your phone</label>
+            <input formControlName="phone" type="tel" id="phone" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+            @if(shipformGroup.get('phone')?.errors && shipformGroup.get('phone')?.touched)
+            {
+                <div class="alert-danger">
+
+                  @if(shipformGroup.get('phone')?.errors?.['required'])
+                  {
+                    <p>you must be write phone</p>
+
+
+                  }
+
+                  @else {
+
+                    <p>enter valid phone</p>
+
+
+                  }
+                  </div>
+        
+
+            }
+          </div>
+          <div class="my-3">
+            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your city</label>
+            <input formControlName="city" type="text" id="city" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required />
+            @if(shipformGroup.get('city')?.errors && shipformGroup.get('city')?.touched)
+            {
+                <div class="alert-danger">
+
+                  
+                    <p>you must be write required</p>
+
+
+               
+                  </div>
+        
+
+            }
+          </div>
+
+         <div>
+          
+    <label for="dropdown" class="font-semibold">Select an Payment:</label>
+  <select id="dropdown" formControlName="dropdownControl" class="w-full rounded">
+    
+
+  @for (item of dropdownOptions; track $index) {
+
+    <option  [value]="item.value" selected>{{ item.label }}</option>
+
+
+
+
+  }
+
+  </select>
+
+  @if(shipformGroup.get('dropdownControl')?.errors && shipformGroup.get('dropdownControl')?.touched)
+  {
+      <div class="alert-danger">
+
+        
+          <p>you must be  choose payment</p>
+
+
+     
+        </div>
+
+
+  }
+         </div>
+
+          
+
+          <button class="btn-main  block ms-auto" [disabled]="shipformGroup.invalid">CheckOut</button>
+
+
+
+    </form>
+
+    
+
+  
+
+</div>
+}

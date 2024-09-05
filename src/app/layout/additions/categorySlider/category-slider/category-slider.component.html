@@ -1,0 +1,24 @@
+
+@if(isloading)
+{
+    <div class="row justify-center ">
+        <span class="loader block text-main"></span>
+    
+    </div>
+}
+
+
+@else {
+    <h2 class="my-4 text-main text-2xl  font-medium">Show Popular Categories</h2>
+
+    <owl-carousel-o [options]="customOptions">
+
+  
+        @for (item of categoryList; track $index) {
+            <ng-template carouselSlide [id]="item._id">
+                <img [src]="item.image" [alt]="item.name" [title]="item.name">
+              </ng-template>
+        }
+    
+      </owl-carousel-o>
+}

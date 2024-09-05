@@ -1,0 +1,78 @@
+<div class="w-3/4 mx-auto   rounded-md px-2 py-2 m-6">
+<h1 class=" font-bold	 text-2xl mt-4">Login now : </h1>
+
+<form  [formGroup]="loginform" (ngSubmit)="submitLogin()">
+
+     @if(errMssg)
+     {
+        <div class="alert-danger">
+            <p class="p-0">{{errMssg}}</p>
+        </div>
+     }
+    <div class="my-3">
+        <label for="email">Email</label>
+        <input type="email" id="email" class="p-2 rounded w-full border-black" formControlName="email">
+
+ 
+        @if(loginform.get('email')?.errors && loginform.get('email')?.touched)
+        {
+            <div class="alert-danger">
+
+                @if(loginform.get('email')?.errors?.['required'])
+                {
+
+                    <p>email required</p>
+
+                }
+
+                @else {
+                    <p>Enter you valid Email</p>
+
+                }
+
+            </div>
+        }
+
+    </div>
+
+    <div class="my-3">
+        <label for="password">Password</label>
+        <input type="text" id="password" class="p-2 rounded w-full border-black" formControlName="password">
+
+      
+        @if(loginform.get('password')?.errors && loginform.get('password')?.touched)
+        {
+            <div class="alert-danger">
+                @if(loginform.get('password')?.errors?.['required'])
+                {
+                    <p>password required</p>
+
+
+                }
+                @else {
+                    <p>Enter your valid  password</p>
+  
+                }
+            </div>
+        }
+    </div>
+   <div class="flex justify-end items-center gap-2">
+    <a routerLink="/forgetpassword" class="text-blue-500 font-bold ">Forget Password</a>
+    <button class="btn-main" [disabled]="loginform.invalid">
+
+        @if(isLoading)
+        {
+            <span>
+                <i class="fa fa-spin fa-spinner"></i>
+            </span>
+
+        }
+        @else {
+            <span>Login</span>
+
+        }
+       
+    </button>
+   </div>
+</form>
+</div>

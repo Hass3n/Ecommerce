@@ -1,0 +1,35 @@
+@if(isloading)
+{
+    <div class="h-screen row justify-center items-center">
+
+        <p class="loader"></p>
+    </div>
+    
+}
+
+@else {
+    <div class="conatiner mx-auto">
+
+
+        <div class="row my-5">
+          
+            @for (item of categoryData; track $index) {
+                <div class="md:w-2/12 p-3 w-full cursor-pointer" [routerLink]="['/categorydetails',item._id]" >
+    
+                    <div class="catgory-card relative">
+                        
+                    <img [src]="item.image" alt="category" class="w-full">
+        
+                    <h2 class="bg-green-300 text-white text-center font-semibold">{{item.name}}</h2>
+    
+            <div class="absolute  row justify-center items-center  w-full end-0 top-0 bottom-0   text-center text-white font-semibold overlay">{{item.slug}}</div>
+        
+                    </div>
+        
+                </div>
+            }
+    
+        </div>
+    </div>
+
+}
